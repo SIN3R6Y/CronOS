@@ -1,2 +1,7 @@
-# CronOS
-CronOS is a complete firmware package for Arduino based Nerf Blasters.
+# CronOS - Modular Firmware / OS for Arduino Based Nerf Blasters
+
+Currently this is in beta status...
+
+We are going to need better documentation, but for now all of the confifuration is done in "include/CronOS.h".
+
+"CronOS.h" is faily well commented, it should be easy to figure out what settings you need to change.
