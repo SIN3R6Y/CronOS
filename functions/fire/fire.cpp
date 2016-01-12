@@ -30,7 +30,7 @@ Copyright 2015 Alex McWhirter */
 
     #ifdef FUNC_GETIRS
       uint16_t IRSPinState; // Infrared Sensor State
-      bool     RPC;         // Round Present in Chamber
+      bool     RPC = false; // Round Present in Chamber
     #endif
 
     while (true)
@@ -44,7 +44,7 @@ Copyright 2015 Alex McWhirter */
       #endif
 
       #ifdef FUNC_GETIRS
-        if (IRSPinState < IRS_THRESH && FSPinState == FS_CLOSE)
+        if ((IRSPinState < IRS_THRESH) && (FSPinState == FS_CLOSE) && (RPC == false))
       #else
         if (DTS > FS_TIMEOUT && FSPinState == FS_CLOSE)
       #endif
@@ -57,15 +57,6 @@ Copyright 2015 Alex McWhirter */
       }
 
       #ifdef FUNC_GETIRS
-        else if (IRSPinState < IRS_THRESH && FSPinState == FS_CLOSE && RPC == true)
-        {
-          PTS = millis();
-          DTS = CTS - PTS;
-          RPC = false;
-        }
-      #endif 
-
-      #ifdef FUNC_GETIRS
         else if (IRSPinState > IRS_THRESH && FSPinState == FS_OPEN && RPC == false)
       #else
         else if (DTS > FS_TIMEOUT && FSPinState == FS_OPEN)
@@ -74,18 +65,24 @@ Copyright 2015 Alex McWhirter */
         digitalWrite(FS_PIN, FS_CLOSE);
         PTS = millis();
         #ifdef FUNC_GETIRS
-          RPC = false;
+          RPC = true;
         #else
           delay(FS_TIMEOUT);
+          return true;
         #endif
-        return true;
       }
+
+      #ifdef FUNC_GETIRS
+        else if ((IRSPinState < IRS_THRESH) && (FSPinState == FS_CLOSE) && (RPC == true))
+        {
+          return true;
+        }
+      #endif 
       
       #ifdef FUNC_GETIRS
         else if (DTS >= FS_TIMEOUT)
         {
           digitalWrite(FS_PIN, FS_CLOSE);
-          RPC = false;
           #ifdef FUNC_SETERROR
             setError();
           #else

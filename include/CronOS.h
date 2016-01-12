@@ -26,7 +26,7 @@ Copyright 2015 Alex McWhirter */
 #define FUNC_FIREMODE
 
 // Function - getIRS
-//#define FUNC_GETIRS
+#define FUNC_GETIRS
 
 // Function - setError
 #define FUNC_SETERROR
