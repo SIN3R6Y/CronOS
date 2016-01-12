@@ -1,0 +1,24 @@
+All parts can be found at https://www.sparkfun.com
+
+Part Number  Description           Quantity  Notes
+
+COM-00100    Relay                 (1)       Sends Direct Battery Power to the Solenoid
+COM-00105    RGB LED               (1)       Fire Mode Indicator
+COM-08837    Rocker Switch         (1)       On / Off Switch
+COM-09190    Pushbutton Switch     (3)       Fire Mode / Quick Fire Buttons
+COM-11507    330 Ohm Resistor      (1)       RGB LED Resistors / IR Circuit Resistors
+COM-11508    10K Ohm Resistors     (1)       Pull Down Resistors / IR Sensor Cricuit Resistors
+COM-13013    Microswitches         (1)       Trigger / Flywheel Switches
+DEV-09716    FTDI Board            (1)       USB / Serial Interface
+DEV-11113    Arduino Pro Mini      (1)       The Brain
+ROB-11015    Solenoid              (1)       Allows / Rejects Round from Entering the Chamber
+SEN-00241    IR Sensors            (1)       Detects When Rounds Are in the Chamber
+
+Notes:
+
+1. The stock solenoid spring is too weak, i replaced it with a spring from a ball point pen.
+
+2. I had to supply direct power from the blaster's battery to the solenoid in order for it
+   to have enough power to compress the new spring. The solenoid is only active for around
+   100ms per cycle, so it doesn't see power for very long. there appears to be no adverse 
+   effects from doing this.
